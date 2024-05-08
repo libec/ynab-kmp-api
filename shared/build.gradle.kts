@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     kotlin("plugin.serialization") version "1.9.22"
+    id("co.touchlab.skie") version "0.6.4"
 }
 
 kotlin {
@@ -22,7 +23,6 @@ kotlin {
             baseName = "Shared"
             isStatic = true
         }
-
     }
     
     sourceSets {
@@ -34,6 +34,7 @@ kotlin {
             implementation("io.ktor:ktor-client-core:2.3.9")
             implementation("io.ktor:ktor-client-content-negotiation:2.3.9")
             implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.9")
+            implementation("io.insert-koin:koin-core:3.2.0")
         }
 
         androidMain.dependencies {
@@ -43,11 +44,10 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(libs.kotlin.test)
+                implementation("io.ktor:ktor-client-mock:2.3.9")
             }
         }
     }
-
-
 }
 
 android {
