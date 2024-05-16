@@ -1,6 +1,17 @@
 import Budget.BudgetsRepositoryImpl
 import Budget.BudgetsResource
-import Budget.MockBudgetsResource
+import Budget.BudgetsRestResource
+import TestDoubles.MockBudgetsResource
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.mock.MockEngine
+import io.ktor.client.engine.mock.respond
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.request.request
+import io.ktor.http.HttpHeaders
+import io.ktor.http.HttpStatusCode
+import io.ktor.http.headersOf
+import io.ktor.serialization.kotlinx.json.json
+import io.ktor.utils.io.ByteReadChannel
 import kotlinx.coroutines.runBlocking
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -29,5 +40,26 @@ class BudgetTests {
         val ids: List<String> = repository.budgets.value.map { it.id }
 
         assertEquals(ids, listOf("103", "913", "32104"))
+    }
+
+    @Test
+    fun `it downloads all budgets`() = runBlocking {
+        val mockEngine = MockEngine { _ ->
+            respond(
+                content = ByteReadChannel("""{"data": {"budgets": [{"id": "103"}, {"id": "913"}, {"id": "32104"}]}}"""),
+                status = HttpStatusCode.OK,
+                headers = headersOf(HttpHeaders.ContentType, "application/json")
+            )
+        }
+        val httpClient = HttpClient(mockEngine) {
+            install(ContentNegotiation) {
+                json()
+            }
+        }
+        val resource = BudgetsRestResource(httpClient)
+
+        val budgets = resource.getAllBudgets()
+
+        assertEquals(budgets.map { it.id }, listOf("103", "913", "32104"))
     }
 }

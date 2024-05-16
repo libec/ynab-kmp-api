@@ -1,24 +1,15 @@
 import Budget.BudgetsRepository
-import Budget.BudgetsRepositoryImpl
-import Budget.BudgetsResource
-import Budget.BudgetsRestResource
 import org.koin.core.component.KoinComponent
 import org.koin.core.context.startKoin
 import org.koin.core.scope.Scope
-import org.koin.dsl.module
 
-object LoginScope { }
-
-val budgets = module {
-    scope<LoginScope> {
-        scoped<BudgetsRepository> { BudgetsRepositoryImpl(resource = get()) }
-        factory<BudgetsResource> { BudgetsRestResource() }
-    }
-}
-
-data class Session(val token: String)
-
-object YnabApi: KoinComponent {
+/*
+ TODO:
+  - Make YnabApi a class,
+  - figure out smarter way to start and stop scopes,
+  - and make it less koin dependent
+ */
+object YnabApi : KoinComponent {
     internal var loginScope: Scope? = null
 
     init {
