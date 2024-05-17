@@ -11,7 +11,7 @@ object LoginScope {}
 
 val budgets = module {
     scope<LoginScope> {
-        scoped<BudgetsRepository> { BudgetsRepositoryImpl(resource = get()) }
+        scoped<BudgetsRepository> { BudgetsRepositoryImpl(get()) }
         factory<BudgetsResource> { BudgetsRestResource(get()) }
         factory<HttpClient> {
             HttpClient {

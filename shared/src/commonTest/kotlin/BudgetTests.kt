@@ -2,16 +2,15 @@ import Budget.BudgetsRepositoryImpl
 import Budget.BudgetsResource
 import Budget.BudgetsRestResource
 import TestDoubles.MockBudgetsResource
-import io.ktor.client.HttpClient
-import io.ktor.client.engine.mock.MockEngine
-import io.ktor.client.engine.mock.respond
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.request.request
+import io.ktor.client.*
+import io.ktor.client.engine.mock.*
+import io.ktor.client.plugins.contentnegotiation.*
+import java.io.File
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.headersOf
-import io.ktor.serialization.kotlinx.json.json
-import io.ktor.utils.io.ByteReadChannel
+import io.ktor.serialization.kotlinx.json.*
+import io.ktor.utils.io.*
 import kotlinx.coroutines.runBlocking
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -44,12 +43,18 @@ class BudgetTests {
 
     @Test
     fun `it downloads all budgets`() = runBlocking {
-        val mockEngine = MockEngine { _ ->
-            respond(
-                content = ByteReadChannel("""{"data": {"budgets": [{"id": "103"}, {"id": "913"}, {"id": "32104"}]}}"""),
-                status = HttpStatusCode.OK,
-                headers = headersOf(HttpHeaders.ContentType, "application/json")
-            )
+        val mockEngine = MockEngine { request ->
+            when (request.url.encodedPath) {
+                "/v1/budgets" -> {
+                    val response = File("src/commonTest/kotlin/MockedResponses/BudgetsResponse.json").readText()
+                    respond(
+                        content = ByteReadChannel(response),
+                        status = HttpStatusCode.OK,
+                        headers = headersOf(HttpHeaders.ContentType, "application/json")
+                    )
+                }
+                else -> error("Unhandled ${request.url.encodedPath}")
+            }
         }
         val httpClient = HttpClient(mockEngine) {
             install(ContentNegotiation) {
@@ -60,6 +65,6 @@ class BudgetTests {
 
         val budgets = resource.getAllBudgets()
 
-        assertEquals(budgets.map { it.id }, listOf("103", "913", "32104"))
+        assertEquals(budgets.map { it.id }, listOf("103", "9002", "32104"))
     }
 }
