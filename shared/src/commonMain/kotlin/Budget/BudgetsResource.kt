@@ -1,8 +1,11 @@
 package Budget
 
+import Session
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
+import io.ktor.client.request.header
+import io.ktor.http.HttpHeaders
 import kotlinx.serialization.Serializable
 
 interface BudgetsResource {
@@ -19,11 +22,14 @@ data class BudgetsResponse(val data: BudgetsData)
 data class BudgetsData(val budgets: List<Budget>)
 
 class BudgetsRestResource(
-    private val httpClient: HttpClient
+    private val httpClient: HttpClient,
+    private val session: Session
 ) : BudgetsResource {
 
     override suspend fun getAllBudgets(): List<Budget> {
-        val response: BudgetsResponse = httpClient.get("https://api.youneedabudget.com/v1/budgets").body()
+        val response: BudgetsResponse = httpClient.get("https://api.youneedabudget.com/v1/budgets") {
+            header(HttpHeaders.Authorization, "Bearer ${session.token}")
+        }.body()
         return response.data.budgets
     }
 

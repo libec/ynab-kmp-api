@@ -2,14 +2,167 @@
   "data": {
     "budgets": [
       {
-        "id": "103"
+        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "name": "string",
+        "last_modified_on": "2024-05-18T09:54:28.054Z",
+        "first_month": "2024-05-18",
+        "last_month": "2024-05-18",
+        "date_format": {
+          "format": "string"
+        },
+        "currency_format": {
+          "iso_code": "string",
+          "example_format": "string",
+          "decimal_digits": 0,
+          "decimal_separator": "string",
+          "symbol_first": true,
+          "group_separator": "string",
+          "currency_symbol": "string",
+          "display_symbol": true
+        },
+        "accounts": [
+          {
+            "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "name": "string",
+            "type": "checking",
+            "on_budget": true,
+            "closed": true,
+            "note": "string",
+            "balance": 0,
+            "cleared_balance": 0,
+            "uncleared_balance": 0,
+            "transfer_payee_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "direct_import_linked": true,
+            "direct_import_in_error": true,
+            "last_reconciled_at": "2024-05-18T09:54:28.054Z",
+            "debt_original_balance": 0,
+            "debt_interest_rates": {
+              "additionalProp1": 0,
+              "additionalProp2": 0,
+              "additionalProp3": 0
+            },
+            "debt_minimum_payments": {
+              "additionalProp1": 0,
+              "additionalProp2": 0,
+              "additionalProp3": 0
+            },
+            "debt_escrow_amounts": {
+              "additionalProp1": 0,
+              "additionalProp2": 0,
+              "additionalProp3": 0
+            },
+            "deleted": true
+          }
+        ]
       },
       {
-        "id": "9002"
-      },
-      {
-        "id": "32104"
+        "id": "123e4567-e89b-12d3-a456-426614174000",
+        "name": "budget 2",
+        "last_modified_on": "2024-05-18T09:54:28.054Z",
+        "first_month": "2024-05-18",
+        "last_month": "2024-05-18",
+        "date_format": {
+          "format": "string"
+        },
+        "currency_format": {
+          "iso_code": "string",
+          "example_format": "string",
+          "decimal_digits": 0,
+          "decimal_separator": "string",
+          "symbol_first": true,
+          "group_separator": "string",
+          "currency_symbol": "string",
+          "display_symbol": true
+        },
+        "accounts": [
+          {
+            "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "name": "account 1",
+            "type": "checking",
+            "on_budget": true,
+            "closed": true,
+            "note": "string",
+            "balance": 0,
+            "cleared_balance": 0,
+            "uncleared_balance": 0,
+            "transfer_payee_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "direct_import_linked": true,
+            "direct_import_in_error": true,
+            "last_reconciled_at": "2024-05-18T09:54:28.054Z",
+            "debt_original_balance": 0,
+            "debt_interest_rates": {
+              "additionalProp1": 0,
+              "additionalProp2": 0,
+              "additionalProp3": 0
+            },
+            "debt_minimum_payments": {
+              "additionalProp1": 0,
+              "additionalProp2": 0,
+              "additionalProp3": 0
+            },
+            "debt_escrow_amounts": {
+              "additionalProp1": 0,
+              "additionalProp2": 0,
+              "additionalProp3": 0
+            },
+            "deleted": true
+          }
+        ]
       }
-    ]
+    ],
+    "default_budget": {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "name": "string",
+      "last_modified_on": "2024-05-18T09:54:28.054Z",
+      "first_month": "2024-05-18",
+      "last_month": "2024-05-18",
+      "date_format": {
+        "format": "string"
+      },
+      "currency_format": {
+        "iso_code": "string",
+        "example_format": "string",
+        "decimal_digits": 0,
+        "decimal_separator": "string",
+        "symbol_first": true,
+        "group_separator": "string",
+        "currency_symbol": "string",
+        "display_symbol": true
+      },
+      "accounts": [
+        {
+          "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "name": "string",
+          "type": "checking",
+          "on_budget": true,
+          "closed": true,
+          "note": "string",
+          "balance": 0,
+          "cleared_balance": 0,
+          "uncleared_balance": 0,
+          "transfer_payee_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "direct_import_linked": true,
+          "direct_import_in_error": true,
+          "last_reconciled_at": "2024-05-18T09:54:28.054Z",
+          "debt_original_balance": 0,
+          "debt_interest_rates": {
+            "additionalProp1": 0,
+            "additionalProp2": 0,
+            "additionalProp3": 0
+          },
+          "debt_minimum_payments": {
+            "additionalProp1": 0,
+            "additionalProp2": 0,
+            "additionalProp3": 0
+          },
+          "debt_escrow_amounts": {
+            "additionalProp1": 0,
+            "additionalProp2": 0,
+            "additionalProp3": 0
+          },
+          "deleted": true
+        }
+      ]
+    }
   }
 }

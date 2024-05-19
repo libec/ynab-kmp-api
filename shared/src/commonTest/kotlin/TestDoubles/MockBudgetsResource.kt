@@ -3,7 +3,7 @@ package TestDoubles
 import Budget.Budget
 import Budget.BudgetsResource
 
-class MockBudgetsResource: BudgetsResource {
+class MockBudgetsResource : BudgetsResource {
     override suspend fun getAllBudgets(): List<Budget> {
         println("Mock GET /budgets")
         val budgetIds = listOf("103", "913", "32104")

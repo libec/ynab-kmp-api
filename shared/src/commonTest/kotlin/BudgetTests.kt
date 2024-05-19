@@ -5,13 +5,14 @@ import TestDoubles.MockBudgetsResource
 import io.ktor.client.*
 import io.ktor.client.engine.mock.*
 import io.ktor.client.plugins.contentnegotiation.*
-import java.io.File
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.headersOf
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.utils.io.*
 import kotlinx.coroutines.runBlocking
+import kotlinx.serialization.json.Json
+import java.io.File
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -42,29 +43,61 @@ class BudgetTests {
     }
 
     @Test
-    fun `it downloads all budgets`() = runBlocking {
+    fun `it downloads all budgets with injected access token`() = runBlocking {
+        val httpClient = makeMockHttpClient(
+            accessToken = "ae2e03aaew3",
+            mockedResponseFileName = "BudgetsResponse.json"
+        )
+        val resource = BudgetsRestResource(httpClient, session = Session("ae2e03aaew3"))
+
+        val budgets = resource.getAllBudgets()
+
+        assertEquals(
+            budgets.map { it.id },
+            listOf(
+                "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "123e4567-e89b-12d3-a456-426614174000",
+            )
+        )
+    }
+
+    private fun makeMockHttpClient(
+        accessToken: String,
+        mockedResponseFileName: String
+    ): HttpClient {
         val mockEngine = MockEngine { request ->
+            val authHeader = request.headers[HttpHeaders.Authorization]
+            println("HEADER: $authHeader")
+
             when (request.url.encodedPath) {
                 "/v1/budgets" -> {
-                    val response = File("src/commonTest/kotlin/MockedResponses/BudgetsResponse.json").readText()
-                    respond(
-                        content = ByteReadChannel(response),
-                        status = HttpStatusCode.OK,
-                        headers = headersOf(HttpHeaders.ContentType, "application/json")
-                    )
+                    if (authHeader == "Bearer $accessToken") {
+                        val response =
+                            File("src/commonTest/kotlin/MockedResponses/$mockedResponseFileName").readText()
+                        respond(
+                            content = ByteReadChannel(response),
+                            status = HttpStatusCode.OK,
+                            headers = headersOf(HttpHeaders.ContentType, "application/json")
+                        )
+                    } else {
+                        respond(
+                            content = ByteReadChannel(""),
+                            status = HttpStatusCode.Unauthorized,
+                            headers = headersOf(HttpHeaders.ContentType, "application/json")
+                        )
+                    }
                 }
+
                 else -> error("Unhandled ${request.url.encodedPath}")
             }
         }
         val httpClient = HttpClient(mockEngine) {
             install(ContentNegotiation) {
-                json()
+                json(Json {
+                    ignoreUnknownKeys = true
+                })
             }
         }
-        val resource = BudgetsRestResource(httpClient)
-
-        val budgets = resource.getAllBudgets()
-
-        assertEquals(budgets.map { it.id }, listOf("103", "9002", "32104"))
+        return httpClient
     }
 }
