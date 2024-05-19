@@ -12,6 +12,7 @@
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		2C18CFEC2BEBE74000F89B97 /* ApiLifecycleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C18CFEB2BEBE74000F89B97 /* ApiLifecycleTests.swift */; };
 		2CBD9D592BEA9664008D1941 /* IntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBD9D582BEA9664008D1941 /* IntegrationTests.swift */; };
+		2CEDE6372BFA6A1800368DC9 /* token.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2CEDE6362BFA6A1800368DC9 /* token.txt */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		2C18CFEB2BEBE74000F89B97 /* ApiLifecycleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiLifecycleTests.swift; sourceTree = "<group>"; };
 		2CBD9D562BEA9664008D1941 /* IntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CBD9D582BEA9664008D1941 /* IntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationTests.swift; sourceTree = "<group>"; };
+		2CEDE6362BFA6A1800368DC9 /* token.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = token.txt; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = iosApp.app; path = "ynab-kmm-api.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				2CBD9D582BEA9664008D1941 /* IntegrationTests.swift */,
+				2CEDE6362BFA6A1800368DC9 /* token.txt */,
 				2C18CFEB2BEBE74000F89B97 /* ApiLifecycleTests.swift */,
 			);
 			path = IntegrationTests;
@@ -207,6 +210,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CEDE6372BFA6A1800368DC9 /* token.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

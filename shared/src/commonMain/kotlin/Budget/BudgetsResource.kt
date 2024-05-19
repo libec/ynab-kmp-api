@@ -6,31 +6,47 @@ import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.header
 import io.ktor.http.HttpHeaders
+import kotlinx.serialization.EncodeDefault
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 interface BudgetsResource {
-    suspend fun getAllBudgets(): List<Budget>
+
+    suspend fun getAllBudgets(): BudgetsResponse
     fun getBudget(budgetId: String)
     fun getSettings(budgetId: String)
 }
 
+object ApiResponse {
+    @Serializable
+    data class BudgetResponse(val data: BudgetsData)
 
-@Serializable
-data class BudgetsResponse(val data: BudgetsData)
+    @Serializable
+    data class BudgetsData(
+        val budgets: List<Budget>,
+        @SerialName("default_budget")
+        val defaultBudget: Budget?
+    )
+}
 
-@Serializable
-data class BudgetsData(val budgets: List<Budget>)
+data class BudgetsResponse(
+    val budgets: List<Budget>,
+    val defaultBudget: Budget?
+)
 
 class BudgetsRestResource(
     private val httpClient: HttpClient,
     private val session: Session
 ) : BudgetsResource {
 
-    override suspend fun getAllBudgets(): List<Budget> {
-        val response: BudgetsResponse = httpClient.get("https://api.youneedabudget.com/v1/budgets") {
+    override suspend fun getAllBudgets(): BudgetsResponse {
+        val response: ApiResponse.BudgetResponse = httpClient.get("https://api.youneedabudget.com/v1/budgets") {
             header(HttpHeaders.Authorization, "Bearer ${session.token}")
         }.body()
-        return response.data.budgets
+        return BudgetsResponse(
+            budgets = response.data.budgets,
+            defaultBudget = response.data.defaultBudget
+        )
     }
 
     override fun getBudget(budgetId: String) {

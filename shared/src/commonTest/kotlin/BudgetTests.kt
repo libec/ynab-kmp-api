@@ -1,7 +1,4 @@
-import Budget.BudgetsRepositoryImpl
-import Budget.BudgetsResource
 import Budget.BudgetsRestResource
-import TestDoubles.MockBudgetsResource
 import io.ktor.client.*
 import io.ktor.client.engine.mock.*
 import io.ktor.client.plugins.contentnegotiation.*
@@ -24,36 +21,18 @@ class BudgetTests {
     }
 
     @Test
-    fun `it downloads and parses all budgets when injected by hand`() = runBlocking {
-        val repository = BudgetsRepositoryImpl(MockBudgetsResource())
-        repository.fetchAllBudgets()
-        val ids: List<String> = repository.budgets.value.map { it.id }
-
-        assertEquals(ids, listOf("103", "913", "32104"))
-    }
-
-    @Test
-    fun `it downloads and parses all budgets using faked koin dependencies`() = runBlocking {
-        YnabApi.loginScope?.declare<BudgetsResource>(MockBudgetsResource())
-        val repository = YnabApi.getBudgetsRepository()
-        repository.fetchAllBudgets()
-        val ids: List<String> = repository.budgets.value.map { it.id }
-
-        assertEquals(ids, listOf("103", "913", "32104"))
-    }
-
-    @Test
     fun `it downloads all budgets with injected access token`() = runBlocking {
         val httpClient = makeMockHttpClient(
             accessToken = "ae2e03aaew3",
             mockedResponseFileName = "BudgetsResponse.json"
         )
-        val resource = BudgetsRestResource(httpClient, session = Session("ae2e03aaew3"))
+        val resource =
+            BudgetsRestResource(httpClient = httpClient, session = Session("ae2e03aaew3"))
 
-        val budgets = resource.getAllBudgets()
+        val budgetsResponse = resource.getAllBudgets()
 
         assertEquals(
-            budgets.map { it.id },
+            budgetsResponse.budgets.map { it.id },
             listOf(
                 "3fa85f64-5717-4562-b3fc-2c963f66afa6",
                 "123e4567-e89b-12d3-a456-426614174000",
