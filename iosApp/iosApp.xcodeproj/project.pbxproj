@@ -69,9 +69,9 @@
 		2CBD9D572BEA9664008D1941 /* IntegrationTests */ = {
 			isa = PBXGroup;
 			children = (
+				2C18CFEB2BEBE74000F89B97 /* ApiLifecycleTests.swift */,
 				2CBD9D582BEA9664008D1941 /* IntegrationTests.swift */,
 				2CEDE6362BFA6A1800368DC9 /* token.txt */,
-				2C18CFEB2BEBE74000F89B97 /* ApiLifecycleTests.swift */,
 			);
 			path = IntegrationTests;
 			sourceTree = "<group>";

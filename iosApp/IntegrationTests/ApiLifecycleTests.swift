@@ -2,8 +2,7 @@ import Shared
 import XCTest
 
 class ApiLifecycleTests: XCTestCase {
-
-    func test_loginStartsANewScopeThatIsDiscardedWhenAUserLogsOut() {
+    func test_loginStartsANewScopeThatIsDiscarded_whenUserLogsOut() {
         let petersToken = "peter_token"
         let stephaniesToken = "stephanie_token"
         let ynabApi = YnabApi()

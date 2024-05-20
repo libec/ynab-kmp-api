@@ -1,4 +1,5 @@
 import Budget.BudgetsRestResource
+import NetworkClient
 import io.ktor.client.*
 import io.ktor.client.engine.mock.*
 import io.ktor.client.plugins.contentnegotiation.*
@@ -15,19 +16,16 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class BudgetTests {
-    @BeforeTest
-    fun setup() {
-        YnabApi.login("test token")
-    }
 
     @Test
     fun `it downloads all budgets with injected access token`() = runBlocking {
-        val httpClient = makeMockHttpClient(
-            accessToken = "ae2e03aaew3",
-            mockedResponseFileName = "BudgetsResponse.json"
-        )
         val resource =
-            BudgetsRestResource(httpClient = httpClient, session = Session("ae2e03aaew3"))
+            BudgetsRestResource(
+                makeMockedNetworkClient(
+                    mockedResponseFileName = "BudgetsResponse.json",
+                    endpoint = "budgets"
+                )
+            )
 
         val budgetsResponse = resource.getAllBudgets()
 
@@ -40,16 +38,32 @@ class BudgetTests {
         )
     }
 
+    private fun makeMockedNetworkClient(
+        mockedResponseFileName: String,
+        endpoint: String
+    ): NetworkClient {
+        val accessToken = "ae2e03aaew3"
+        return NetworkClient(
+            httpClient = makeMockHttpClient(
+                accessToken = accessToken,
+                mockedResponseFileName = mockedResponseFileName,
+                endpoint = endpoint
+            ),
+            session = Session(accessToken)
+        )
+    }
+
     private fun makeMockHttpClient(
         accessToken: String,
-        mockedResponseFileName: String
+        mockedResponseFileName: String,
+        endpoint: String
     ): HttpClient {
         val mockEngine = MockEngine { request ->
             val authHeader = request.headers[HttpHeaders.Authorization]
             println("HEADER: $authHeader")
 
             when (request.url.encodedPath) {
-                "/v1/budgets" -> {
+                "/v1/$endpoint" -> {
                     if (authHeader == "Bearer $accessToken") {
                         val response =
                             File("src/commonTest/kotlin/MockedResponses/$mockedResponseFileName").readText()

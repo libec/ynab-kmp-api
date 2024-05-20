@@ -15,10 +15,9 @@ final class IntegrationTests: XCTestCase {
     override func tearDown() {
         super.tearDown()
         ynabApi.logout()
-        ynabApi = nil
     }
 
-    func loadAccessToken() -> String? {
+    private func loadAccessToken() -> String? {
         guard let url = Bundle(for: Self.self).url(forResource: "token", withExtension: "txt") else {
             return nil
         }
@@ -33,17 +32,9 @@ final class IntegrationTests: XCTestCase {
     func test_itCallsTheApiWithInjectedTokens() async {
         let repository = ynabApi.getBudgetsRepository()
         try? await repository.fetchAllBudgets()
-        let expectation = expectation(description: "wait for the budgets to load")
-        Task.detached {
-            for await budgets in repository.budgets {
-                print("All budgets")
-                for budget in budgets {
-                    print("💰💰: \(budget)")
-                }
-                expectation.fulfill()
-            }
+        print("All budgets")
+        for budget in repository.budgets.value {
+            print("💸💸: \(budget)")
         }
-
-        await fulfillment(of: [expectation])
     }
 }
