@@ -1,4 +1,3 @@
-import Session
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
@@ -7,7 +6,7 @@ import io.ktor.http.HttpHeaders
 
 class NetworkClient(
     val httpClient: HttpClient,
-    val session: Session
+    val userAuthentication: UserAuthentication
 ) {
 
     companion object {
@@ -16,7 +15,7 @@ class NetworkClient(
 
     suspend inline fun <reified T> get(endpoint: String): T {
         return httpClient.get("$baseUrl$endpoint") {
-            header(HttpHeaders.Authorization, "Bearer ${session.token}")
+            header(HttpHeaders.Authorization, "Bearer ${userAuthentication.token}")
         }.body()
     }
 }

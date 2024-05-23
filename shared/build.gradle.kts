@@ -17,16 +17,19 @@ kotlin {
     listOf(
         iosX64(),
         iosArm64(),
-        iosSimulatorArm64()
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
+        iosSimulatorArm64(),
+        macosArm64(),
+        tvosArm64(),
+        watchosArm64()
+    ).forEach { target ->
+        target.binaries.framework {
             baseName = "Shared"
             isStatic = true
         }
     }
 
     sourceSets {
-        iosMain.dependencies {
+        appleMain.dependencies {
             implementation("io.ktor:ktor-client-darwin:2.3.9")
         }
 

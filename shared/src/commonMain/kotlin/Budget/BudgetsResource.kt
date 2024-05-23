@@ -14,19 +14,19 @@ data class BudgetsResponse(
     val budgets: List<Budget>, val defaultBudget: Budget?
 )
 
-object ApiResponse {
-    @Serializable
-    data class BudgetResponse(val data: BudgetsData)
-
-    @Serializable
-    data class BudgetsData(
-        val budgets: List<Budget>, @SerialName("default_budget") val defaultBudget: Budget?
-    )
-}
-
 class BudgetsRestResource(
     private val networkClient: NetworkClient
 ) : BudgetsResource {
+
+    object ApiResponse {
+        @Serializable
+        data class BudgetResponse(val data: BudgetsData)
+
+        @Serializable
+        data class BudgetsData(
+            val budgets: List<Budget>, @SerialName("default_budget") val defaultBudget: Budget?
+        )
+    }
 
     override suspend fun getAllBudgets(): BudgetsResponse {
         val response: ApiResponse.BudgetResponse = networkClient.get("/budgets")
