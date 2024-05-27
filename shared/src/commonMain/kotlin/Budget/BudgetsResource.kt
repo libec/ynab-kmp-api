@@ -11,7 +11,8 @@ interface BudgetsResource {
 }
 
 data class BudgetsResponse(
-    val budgets: List<Budget>, val defaultBudget: Budget?
+    val budgets: List<Budget>,
+    val defaultBudget: Budget?
 )
 
 class BudgetsRestResource(
@@ -24,12 +25,15 @@ class BudgetsRestResource(
 
         @Serializable
         data class BudgetsData(
-            val budgets: List<Budget>, @SerialName("default_budget") val defaultBudget: Budget?
+            val budgets: List<Budget>,
+            @SerialName("default_budget")
+            val defaultBudget: Budget?
         )
     }
 
     override suspend fun getAllBudgets(): BudgetsResponse {
-        val response: ApiResponse.BudgetResponse = networkClient.get("/budgets")
+        val response: ApiResponse.BudgetResponse =
+            networkClient.get("/budgets", listOf(Pair("include_accounts", "true")))
         return BudgetsResponse(
             budgets = response.data.budgets,
             defaultBudget = response.data.defaultBudget

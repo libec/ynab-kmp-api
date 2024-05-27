@@ -3,39 +3,39 @@
     "budgets": [
       {
         "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        "name": "string",
+        "name": "Personal Budget",
         "last_modified_on": "2024-05-18T09:54:28.054Z",
-        "first_month": "2024-05-18",
-        "last_month": "2024-05-18",
+        "first_month": "2024-05-01",
+        "last_month": "2024-05-31",
         "date_format": {
-          "format": "string"
+          "format": "yyyy-MM-dd"
         },
         "currency_format": {
-          "iso_code": "string",
-          "example_format": "string",
-          "decimal_digits": 0,
-          "decimal_separator": "string",
+          "iso_code": "USD",
+          "example_format": "$1,234.56",
+          "decimal_digits": 2,
+          "decimal_separator": ".",
           "symbol_first": true,
-          "group_separator": "string",
-          "currency_symbol": "string",
+          "group_separator": ",",
+          "currency_symbol": "$",
           "display_symbol": true
         },
         "accounts": [
           {
             "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "name": "string",
+            "name": "Checking Account",
             "type": "checking",
             "on_budget": true,
-            "closed": true,
-            "note": "string",
-            "balance": 0,
+            "closed": false,
+            "note": "Main checking account",
+            "balance": -6942931520,
             "cleared_balance": 0,
             "uncleared_balance": 0,
             "transfer_payee_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
             "direct_import_linked": true,
-            "direct_import_in_error": true,
+            "direct_import_in_error": false,
             "last_reconciled_at": "2024-05-18T09:54:28.054Z",
-            "debt_original_balance": 0,
+            "debt_original_balance": null,
             "debt_interest_rates": {
               "additionalProp1": 0,
               "additionalProp2": 0,
@@ -51,100 +51,88 @@
               "additionalProp2": 0,
               "additionalProp3": 0
             },
-            "deleted": true
+            "deleted": false
           }
         ]
       },
       {
-        "id": "123e4567-e89b-12d3-a456-426614174000",
-        "name": "budget 2",
+        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa7",
+        "name": "Business Budget",
         "last_modified_on": "2024-05-18T09:54:28.054Z",
-        "first_month": "2024-05-18",
-        "last_month": "2024-05-18",
+        "first_month": "2024-05-01",
+        "last_month": "2024-05-31",
         "date_format": {
-          "format": "string"
+          "format": "yyyy-MM-dd"
         },
         "currency_format": {
-          "iso_code": "string",
-          "example_format": "string",
-          "decimal_digits": 0,
-          "decimal_separator": "string",
+          "iso_code": "USD",
+          "example_format": "$1,234.56",
+          "decimal_digits": 2,
+          "decimal_separator": ".",
           "symbol_first": true,
-          "group_separator": "string",
-          "currency_symbol": "string",
+          "group_separator": ",",
+          "currency_symbol": "$",
           "display_symbol": true
         },
         "accounts": [
           {
-            "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "name": "account 1",
+            "id": "3fa85f64-5717-4562-b3fc-2c963f66afa7",
+            "name": "Business Account",
             "type": "checking",
             "on_budget": true,
-            "closed": true,
-            "note": "string",
-            "balance": 0,
-            "cleared_balance": 0,
+            "closed": false,
+            "note": "Main business account",
+            "balance": 1000000,
+            "cleared_balance": 1000000,
             "uncleared_balance": 0,
-            "transfer_payee_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "transfer_payee_id": "3fa85f64-5717-4562-b3fc-2c963f66afa7",
             "direct_import_linked": true,
-            "direct_import_in_error": true,
+            "direct_import_in_error": false,
             "last_reconciled_at": "2024-05-18T09:54:28.054Z",
-            "debt_original_balance": 0,
-            "debt_interest_rates": {
-              "additionalProp1": 0,
-              "additionalProp2": 0,
-              "additionalProp3": 0
-            },
-            "debt_minimum_payments": {
-              "additionalProp1": 0,
-              "additionalProp2": 0,
-              "additionalProp3": 0
-            },
-            "debt_escrow_amounts": {
-              "additionalProp1": 0,
-              "additionalProp2": 0,
-              "additionalProp3": 0
-            },
-            "deleted": true
+            "debt_original_balance": null,
+            "debt_interest_rates": {},
+            "debt_minimum_payments": {},
+            "debt_escrow_amounts": {},
+            "deleted": false
           }
         ]
       }
     ],
     "default_budget": {
       "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "name": "string",
+      "name": "Default Budget",
       "last_modified_on": "2024-05-18T09:54:28.054Z",
-      "first_month": "2024-05-18",
-      "last_month": "2024-05-18",
+      "first_month": "2024-05-01",
+      "last_month": "2024-05-31",
       "date_format": {
-        "format": "string"
+        "format": "yyyy-MM-dd"
       },
       "currency_format": {
-        "iso_code": "string",
-        "example_format": "string",
-        "decimal_digits": 0,
-        "decimal_separator": "string",
+        "iso_code": "USD",
+        "example_format": "$1,234.56",
+        "decimal_digits": 2,
+        "decimal_separator": ".",
         "symbol_first": true,
-        "group_separator": "string",
-        "currency_symbol": "string",
+        "group_separator": ",",
+        "currency_symbol": "$",
         "display_symbol": true
       },
       "accounts": [
         {
           "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-          "name": "string",
-          "type": "checking",
+          "name": "Savings Account",
+          "type": "savings",
           "on_budget": true,
-          "closed": true,
-          "note": "string",
-          "balance": 0,
-          "cleared_balance": 0,
+          "closed": false,
+          "note": "Emergency savings",
+          "balance": 500000,
+          "cleared_balance": 500000,
           "uncleared_balance": 0,
           "transfer_payee_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
           "direct_import_linked": true,
-          "direct_import_in_error": true,
+          "direct_import_in_error": false,
           "last_reconciled_at": "2024-05-18T09:54:28.054Z",
-          "debt_original_balance": 0,
+          "debt_original_balance": null,
           "debt_interest_rates": {
             "additionalProp1": 0,
             "additionalProp2": 0,
@@ -160,7 +148,7 @@
             "additionalProp2": 0,
             "additionalProp3": 0
           },
-          "deleted": true
+          "deleted": false
         }
       ]
     }

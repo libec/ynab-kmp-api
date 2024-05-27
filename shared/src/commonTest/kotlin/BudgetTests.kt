@@ -1,3 +1,7 @@
+import Budget.Account
+import Budget.Budget
+import Budget.CurrencyFormat
+import Budget.DateFormat
 import kotlinx.coroutines.runBlocking
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -15,16 +19,131 @@ class BudgetTests {
 
         budgetRepository.fetchAllBudgets()
 
-        assertEquals(
-            budgetRepository.budgets.value.map { it.id },
-            listOf(
-                "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-                "123e4567-e89b-12d3-a456-426614174000",
+        val expectedBudget0 = Budget(
+            id = "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            name = "Personal Budget",
+            lastModifiedOn = "2024-05-18T09:54:28.054Z",
+            firstMonth = "2024-05-01",
+            lastMonth = "2024-05-31",
+            dateFormat = DateFormat(format = "yyyy-MM-dd"),
+            currencyFormat = CurrencyFormat(
+                isoCode = "USD",
+                exampleFormat = "$1,234.56",
+                decimalDigits = 2,
+                decimalSeparator = ".",
+                symbolFirst = true,
+                groupSeparator = ",",
+                currencySymbol = "$",
+                displaySymbol = true
+            ),
+            accounts = listOf(
+                Account(
+                    id = "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    name = "Checking Account",
+                    type = "checking",
+                    onBudget = true,
+                    closed = false,
+                    note = "Main checking account",
+                    balance = -6942931520,
+                    clearedBalance = 0,
+                    unclearedBalance = 0,
+                    transferPayeeId = "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    directImportLinked = true,
+                    directImportInError = false,
+                    lastReconciledAt = "2024-05-18T09:54:28.054Z",
+                    debtOriginalBalance = null,
+                    debtInterestRates = mapOf("additionalProp1" to 0, "additionalProp2" to 0, "additionalProp3" to 0),
+                    debtMinimumPayments = mapOf("additionalProp1" to 0, "additionalProp2" to 0, "additionalProp3" to 0),
+                    debtEscrowAmounts = mapOf("additionalProp1" to 0, "additionalProp2" to 0, "additionalProp3" to 0),
+                    deleted = false
+                )
             )
         )
-        assertEquals(
-            budgetRepository.selectedBudget.value?.id,
-            "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+
+        val expectedBudget1 = Budget(
+            id = "3fa85f64-5717-4562-b3fc-2c963f66afa7",
+            name = "Business Budget",
+            lastModifiedOn = "2024-05-18T09:54:28.054Z",
+            firstMonth = "2024-05-01",
+            lastMonth = "2024-05-31",
+            dateFormat = DateFormat(format = "yyyy-MM-dd"),
+            currencyFormat = CurrencyFormat(
+                isoCode = "USD",
+                exampleFormat = "$1,234.56",
+                decimalDigits = 2,
+                decimalSeparator = ".",
+                symbolFirst = true,
+                groupSeparator = ",",
+                currencySymbol = "$",
+                displaySymbol = true
+            ),
+            accounts = listOf(
+                Account(
+                    id = "3fa85f64-5717-4562-b3fc-2c963f66afa7",
+                    name = "Business Account",
+                    type = "checking",
+                    onBudget = true,
+                    closed = false,
+                    note = "Main business account",
+                    balance = 1000000,
+                    clearedBalance = 1000000,
+                    unclearedBalance = 0,
+                    transferPayeeId = "3fa85f64-5717-4562-b3fc-2c963f66afa7",
+                    directImportLinked = true,
+                    directImportInError = false,
+                    lastReconciledAt = "2024-05-18T09:54:28.054Z",
+                    debtOriginalBalance = null,
+                    debtInterestRates = mapOf(),
+                    debtMinimumPayments = mapOf(),
+                    debtEscrowAmounts = mapOf(),
+                    deleted = false
+                )
+            )
         )
+
+        val defaultExpectedBudget = Budget(
+            id = "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            name = "Default Budget",
+            lastModifiedOn = "2024-05-18T09:54:28.054Z",
+            firstMonth = "2024-05-01",
+            lastMonth = "2024-05-31",
+            dateFormat = DateFormat(format = "yyyy-MM-dd"),
+            currencyFormat = CurrencyFormat(
+                isoCode = "USD",
+                exampleFormat = "$1,234.56",
+                decimalDigits = 2,
+                decimalSeparator = ".",
+                symbolFirst = true,
+                groupSeparator = ",",
+                currencySymbol = "$",
+                displaySymbol = true
+            ),
+            accounts = listOf(
+                Account(
+                    id = "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    name = "Savings Account",
+                    type = "savings",
+                    onBudget = true,
+                    closed = false,
+                    note = "Emergency savings",
+                    balance = 500000,
+                    clearedBalance = 500000,
+                    unclearedBalance = 0,
+                    transferPayeeId = "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    directImportLinked = true,
+                    directImportInError = false,
+                    lastReconciledAt = "2024-05-18T09:54:28.054Z",
+                    debtOriginalBalance = null,
+                    debtInterestRates = mapOf("additionalProp1" to 0, "additionalProp2" to 0, "additionalProp3" to 0),
+                    debtMinimumPayments = mapOf("additionalProp1" to 0, "additionalProp2" to 0, "additionalProp3" to 0),
+                    debtEscrowAmounts = mapOf("additionalProp1" to 0, "additionalProp2" to 0, "additionalProp3" to 0),
+                    deleted = false
+                )
+            )
+        )
+
+        assertEquals(expectedBudget0, budgetRepository.budgets.value[0])
+        assertEquals(expectedBudget1, budgetRepository.budgets.value[1])
+        assertEquals(defaultExpectedBudget, budgetRepository.selectedBudget.value)
     }
 }

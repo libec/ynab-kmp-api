@@ -12,7 +12,7 @@ interface BudgetsRepository {
     fun add(budget: Budget)
 }
 
-class BudgetsRepositoryImpl(
+internal class BudgetsRepositoryImpl(
     private val resource: BudgetsResource
 ) : BudgetsRepository {
 
