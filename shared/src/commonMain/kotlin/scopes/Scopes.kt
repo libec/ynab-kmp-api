@@ -1,7 +1,11 @@
-import Budget.BudgetsRepository
-import Budget.BudgetsRepositoryImpl
-import Budget.BudgetsResource
-import Budget.BudgetsRestResource
+package scopes
+
+import features.budget.BudgetsRepository
+import features.budget.BudgetsRepositoryImpl
+import features.budget.BudgetsResource
+import features.budget.BudgetsRestResource
+import UserAuthentication
+import infrastructure.networking.NetworkClient
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
@@ -11,7 +15,7 @@ import org.koin.core.context.startKoin
 import org.koin.core.scope.Scope
 import org.koin.dsl.module
 
-object Scopes : KoinComponent {
+internal object Scopes : KoinComponent {
 
     object LoginScope {}
 

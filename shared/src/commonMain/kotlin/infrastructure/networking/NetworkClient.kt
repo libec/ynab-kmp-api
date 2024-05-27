@@ -1,3 +1,6 @@
+package infrastructure.networking
+
+import UserAuthentication
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
@@ -5,9 +8,9 @@ import io.ktor.client.request.header
 import io.ktor.client.request.parameter
 import io.ktor.http.HttpHeaders
 
-class NetworkClient(
-    val httpClient: HttpClient,
-    val userAuthentication: UserAuthentication
+internal class NetworkClient(
+    internal val httpClient: HttpClient,
+    internal val userAuthentication: UserAuthentication
 ) {
 
     companion object {

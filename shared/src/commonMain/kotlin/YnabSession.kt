@@ -1,5 +1,6 @@
-import Budget.BudgetsRepository
+import features.budget.BudgetsRepository
 import org.koin.core.scope.Scope
+import scopes.Scopes
 
 class YnabSession(
     private val userAuthentication: UserAuthentication,

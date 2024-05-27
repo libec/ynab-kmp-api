@@ -1,4 +1,4 @@
-package Budget
+package features.budget
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

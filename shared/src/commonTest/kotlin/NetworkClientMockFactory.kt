@@ -9,8 +9,9 @@ import io.ktor.http.headersOf
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.utils.io.ByteReadChannel
 import kotlinx.serialization.json.Json
+import infrastructure.networking.NetworkClient
 
-class NetworkClientMockFactory {
+internal class NetworkClientMockFactory {
     fun makeMockedNetworkClient(
         mockedResponseFileName: String,
         endpoint: String,

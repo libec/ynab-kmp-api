@@ -1,5 +1,4 @@
-import Budget.BudgetsRepository
-import Budget.BudgetsRepositoryImpl
+import features.budget.BudgetsRepository
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column

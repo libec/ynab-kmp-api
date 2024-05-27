@@ -1,49 +1,7 @@
-package Budget
+package features.account
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-
-@Serializable
-data class Budget(
-    val id: String,
-    val name: String,
-    @SerialName("last_modified_on")
-    val lastModifiedOn: String,
-    @SerialName("first_month")
-    val firstMonth: String,
-    @SerialName("last_month")
-    val lastMonth: String,
-    @SerialName("date_format")
-    val dateFormat: DateFormat,
-    @SerialName("currency_format")
-    val currencyFormat: CurrencyFormat,
-    val accounts: List<Account>
-)
-
-@Serializable
-data class DateFormat(
-    val format: String
-)
-
-@Serializable
-data class CurrencyFormat(
-    @SerialName("iso_code")
-    val isoCode: String,
-    @SerialName("example_format")
-    val exampleFormat: String,
-    @SerialName("decimal_digits")
-    val decimalDigits: Int,
-    @SerialName("decimal_separator")
-    val decimalSeparator: String,
-    @SerialName("symbol_first")
-    val symbolFirst: Boolean,
-    @SerialName("group_separator")
-    val groupSeparator: String,
-    @SerialName("currency_symbol")
-    val currencySymbol: String,
-    @SerialName("display_symbol")
-    val displaySymbol: Boolean
-)
 
 @Serializable
 data class Account(

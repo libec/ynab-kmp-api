@@ -1,21 +1,20 @@
-package Budget
+package features.budget
 
-import NetworkClient
+import infrastructure.networking.NetworkClient
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-interface BudgetsResource {
+internal interface BudgetsResource {
     suspend fun getAllBudgets(): BudgetsResponse
     fun getBudget(budgetId: String)
-    fun getSettings(budgetId: String)
 }
 
-data class BudgetsResponse(
+internal data class BudgetsResponse(
     val budgets: List<Budget>,
     val defaultBudget: Budget?
 )
 
-class BudgetsRestResource(
+internal class BudgetsRestResource(
     private val networkClient: NetworkClient
 ) : BudgetsResource {
 
@@ -42,9 +41,5 @@ class BudgetsRestResource(
 
     override fun getBudget(budgetId: String) {
         println("GET /budgets/$budgetId")
-    }
-
-    override fun getSettings(budgetId: String) {
-        println("GET /budgets/$budgetId/settings")
     }
 }
