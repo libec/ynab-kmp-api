@@ -41,7 +41,7 @@ internal class NetworkClientMockFactory {
                     if (authHeader == "Bearer $accessToken") {
                         // TODO: - File is imported from java.io and iOS test can't run because of it.
                         val response =
-                            File("src/commonTest/kotlin/MockedResponses/$mockedResponseFileName").readText()
+                            File("src/commonTest/kotlin/mocked_responses/$mockedResponseFileName").readText()
                         respond(
                             content = ByteReadChannel(response),
                             status = HttpStatusCode.OK,
