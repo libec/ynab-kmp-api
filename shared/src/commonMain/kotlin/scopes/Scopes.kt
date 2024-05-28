@@ -9,7 +9,9 @@ import infrastructure.networking.NetworkClient
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonNamingStrategy
 import org.koin.core.component.KoinComponent
 import org.koin.core.context.startKoin
 import org.koin.core.scope.Scope
@@ -19,6 +21,7 @@ internal object Scopes : KoinComponent {
 
     object LoginScope {}
 
+    @OptIn(ExperimentalSerializationApi::class)
     val ynabModules = module {
         scope<LoginScope> {
             scoped<BudgetsRepository> { BudgetsRepositoryImpl(get()) }
@@ -29,6 +32,8 @@ internal object Scopes : KoinComponent {
                     install(ContentNegotiation) {
                         json(Json {
                             ignoreUnknownKeys = true
+                            namingStrategy = JsonNamingStrategy.SnakeCase
+                            explicitNulls = false
                         })
                     }
                 }

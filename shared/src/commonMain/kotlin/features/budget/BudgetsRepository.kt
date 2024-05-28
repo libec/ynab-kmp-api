@@ -9,7 +9,7 @@ interface BudgetsRepository {
     val selectedBudget: StateFlow<Budget?>
 
     suspend fun fetchAllBudgets()
-    fun add(budget: Budget)
+    suspend fun fetchBudgetWithDetail(budgetId: String): Budget
 }
 
 internal class BudgetsRepositoryImpl(
@@ -22,7 +22,7 @@ internal class BudgetsRepositoryImpl(
     override val budgets: StateFlow<List<Budget>>
         get() = mutableBudgets.asStateFlow()
 
-    override  val selectedBudget: StateFlow<Budget?>
+    override val selectedBudget: StateFlow<Budget?>
         get() = mutableSelectedBudgets.asStateFlow()
 
     override suspend fun fetchAllBudgets() {
@@ -31,7 +31,15 @@ internal class BudgetsRepositoryImpl(
         mutableSelectedBudgets.value = response.defaultBudget
     }
 
-    override fun add(budget: Budget) {
-        mutableBudgets.value = mutableBudgets.value + budget
+    override suspend fun fetchBudgetWithDetail(budgetId: String): Budget {
+        val budget = resource.getBudget(budgetId)
+        val budgets = mutableBudgets.value.toMutableList()
+        val index = budgets.indexOfFirst { it.id == budgetId }
+        if (index == -1) {
+            budgets.add(budget)
+        } else {
+            budgets[index] = budget
+        }
+        return budget
     }
 }

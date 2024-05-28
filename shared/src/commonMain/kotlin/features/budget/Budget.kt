@@ -1,24 +1,41 @@
 package features.budget
 
 import features.account.Account
+import features.category.Category
+import features.category.CategoryGroup
+import features.month.Month
+import features.payee.Payee
+import features.payee.PayeeLocation
+import features.transaction.ScheduledSubtransaction
+import features.transaction.ScheduledTransaction
+import features.transaction.Subtransaction
+import features.transaction.Transaction
 import infrastructure.formats.CurrencyFormat
 import infrastructure.formats.DateFormat
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class Budget(
     val id: String,
     val name: String,
-    @SerialName("last_modified_on")
     val lastModifiedOn: String,
-    @SerialName("first_month")
     val firstMonth: String,
-    @SerialName("last_month")
     val lastMonth: String,
-    @SerialName("date_format")
     val dateFormat: DateFormat,
-    @SerialName("currency_format")
     val currencyFormat: CurrencyFormat,
-    val accounts: List<Account>
-)
+    val budgetDetail: BudgetDetail? = null
+) {
+    @Serializable
+    data class BudgetDetail(
+        val accounts: List<Account> = emptyList(),
+        val payees: List<Payee> = emptyList(),
+        val payeeLocations: List<PayeeLocation> = emptyList(),
+        val categoryGroups: List<CategoryGroup> = emptyList(),
+        val categories: List<Category> = emptyList(),
+        val months: List<Month> = emptyList(),
+        val transactions: List<Transaction> = emptyList(),
+        val subtransactions: List<Subtransaction> = emptyList(),
+        val scheduledTransactions: List<ScheduledTransaction> = emptyList(),
+        val scheduledSubtransactions: List<ScheduledSubtransaction> = emptyList()
+    )
+}

@@ -1,0 +1,217 @@
+{
+  "data": {
+    "budget": {
+      "id": "budg-id-dbaw4rj",
+      "name": "Personal Budget",
+      "last_modified_on": "2024-05-18T09:54:28.054Z",
+      "first_month": "2024-05-01",
+      "last_month": "2024-05-31",
+      "date_format": {
+        "format": "yyyy-MM-dd"
+      },
+      "currency_format": {
+        "iso_code": "USD",
+        "example_format": "$1,234.56",
+        "decimal_digits": 2,
+        "decimal_separator": ".",
+        "symbol_first": true,
+        "group_separator": ",",
+        "currency_symbol": "$",
+        "display_symbol": true
+      },
+      "accounts": [
+        {
+          "id": "acc-id-14llcd",
+          "name": "Checking Account",
+          "type": "checking-bank",
+          "on_budget": true,
+          "closed": false,
+          "note": "Main checking account in the bank",
+          "balance": 312000,
+          "cleared_balance": 315000,
+          "uncleared_balance": 3000,
+          "transfer_payee_id": "payee-1432",
+          "direct_import_linked": true,
+          "direct_import_in_error": false,
+          "last_reconciled_at": "2024-05-18T09:54:28.054Z",
+          "debt_original_balance": null,
+          "debt_interest_rates": {
+            "additionalProp1": 0,
+            "additionalProp2": 0,
+            "additionalProp3": 0
+          },
+          "debt_minimum_payments": {
+            "additionalProp1": 0,
+            "additionalProp2": 0,
+            "additionalProp3": 0
+          },
+          "debt_escrow_amounts": {
+            "additionalProp1": 0,
+            "additionalProp2": 0,
+            "additionalProp3": 0
+          },
+          "deleted": false
+        }
+      ],
+      "payees": [
+        {
+          "id": "payee-id-139cvw",
+          "name": "Drug store",
+          "transfer_account_id": "drug-tranfid1",
+          "deleted": false
+        }
+      ],
+      "payee_locations": [
+        {
+          "id": "payee-loc-1231",
+          "payee_id": "payee-id-139cvw",
+          "latitude": "40.7128",
+          "longitude": "74.0060",
+          "deleted": false
+        }
+      ],
+      "category_groups": [
+        {
+          "id": "cat-group-health",
+          "name": "Wellness",
+          "hidden": false,
+          "deleted": false
+        }
+      ],
+      "categories": [
+        {
+          "id": "healthcare-1zs",
+          "category_group_id": "cat-group-health",
+          "category_group_name": "Wellness",
+          "name": "Healthcare",
+          "hidden": false,
+          "original_category_group_id": "orig-cat1-id",
+          "note": "For keeping me alive for a bit",
+          "budgeted": 20000,
+          "activity": 15000,
+          "balance": 5000,
+          "goal_type": "monthly",
+          "goal_day": 1,
+          "goal_cadence": 1,
+          "goal_cadence_frequency": 1,
+          "goal_creation_month": "2024-05-01",
+          "goal_target": 20000,
+          "goal_target_month": "2024-05-01",
+          "goal_percentage_complete": 75,
+          "goal_months_to_budget": 1,
+          "goal_under_funded": 5000,
+          "goal_overall_funded": 15000,
+          "goal_overall_left": 5000,
+          "deleted": false
+        }
+      ],
+      "months": [
+        {
+          "month": "2024-05-01",
+          "note": "May budget",
+          "income": 300000,
+          "budgeted": 250000,
+          "activity": 200000,
+          "to_be_budgeted": 50000,
+          "age_of_money": 30,
+          "deleted": false,
+          "categories": [
+            {
+              "id": "healthcare-1zs",
+              "category_group_id": "cat-group-health",
+              "category_group_name": "Wellness",
+              "name": "Healthcare",
+              "hidden": false,
+              "original_category_group_id": "orig-cat1-id",
+              "note": "For keeping me alive for a bit",
+              "budgeted": 20000,
+              "activity": 15000,
+              "balance": 5000,
+              "goal_type": "monthly",
+              "goal_day": 1,
+              "goal_cadence": 1,
+              "goal_cadence_frequency": 1,
+              "goal_creation_month": "2024-05-01",
+              "goal_target": 20000,
+              "goal_target_month": "2024-05-01",
+              "goal_percentage_complete": 75,
+              "goal_months_to_budget": 1,
+              "goal_under_funded": 5000,
+              "goal_overall_funded": 15000,
+              "goal_overall_left": 5000,
+              "deleted": false
+            }
+          ]
+        }
+      ],
+      "transactions": [
+        {
+          "id": "transa1-13z_1d3",
+          "date": "2024-05-18",
+          "amount": 150000,
+          "memo": "Car purchase",
+          "cleared": "cleared",
+          "approved": true,
+          "flag_color": "black",
+          "flag_name": "Black Car Priority",
+          "account_id": "acc-check-1",
+          "payee_id": "payee-14",
+          "category_id": "cat0134",
+          "transfer_account_id": "tracc4",
+          "transfer_transaction_id": "66afa6",
+          "matched_transaction_id": "b3fc",
+          "import_id": "impoid12",
+          "import_payee_name": "Subaru dealership",
+          "import_payee_name_original": "Subaru",
+          "debt_transaction_type": "regular",
+          "deleted": false
+        }
+      ],
+      "subtransactions": [
+        {
+          "id": "subtrans-1391223",
+          "transaction_id": "trans-zzzcd",
+          "amount": 5000,
+          "memo": "Half of the rent",
+          "payee_id": "roomie-4",
+          "payee_name": "Roommate",
+          "category_id": "cat-rent3",
+          "category_name": "Rent",
+          "transfer_account_id": "rac-tran3",
+          "transfer_transaction_id": "10awd",
+          "deleted": false
+        }
+      ],
+      "scheduled_transactions": [
+        {
+          "id": "schedtransid-31431",
+          "date_first": "2024-05-01",
+          "date_next": "2024-06-01",
+          "frequency": "monthly",
+          "amount": 1000,
+          "memo": "Rent payment",
+          "flag_color": "green",
+          "flag_name": "Rent",
+          "account_id": "acc-0",
+          "payee_id": "poayee-13",
+          "category_id": "catm_c1",
+          "transfer_account_id": "trnzc-11z02",
+          "deleted": false
+        }
+      ],
+      "scheduled_subtransactions": [
+        {
+          "id": "subtransid-104dasd3",
+          "scheduled_transaction_id": "schedtransid-31431",
+          "amount": 1000,
+          "memo": "Groceries",
+          "payee_id": "paz_12",
+          "category_id": "caze01_1",
+          "transfer_account_id": "caz_W2112",
+          "deleted": true
+        }
+      ]
+    },
+    "server_knowledge": 0
+  }
+}

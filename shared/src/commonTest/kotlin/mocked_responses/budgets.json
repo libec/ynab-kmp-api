@@ -2,7 +2,7 @@
   "data": {
     "budgets": [
       {
-        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "id": "budg-id-dbaw4rj",
         "name": "Personal Budget",
         "last_modified_on": "2024-05-18T09:54:28.054Z",
         "first_month": "2024-05-01",
@@ -22,16 +22,16 @@
         },
         "accounts": [
           {
-            "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "id": "acc-id-14llcd",
             "name": "Checking Account",
-            "type": "checking",
+            "type": "checking-bank",
             "on_budget": true,
             "closed": false,
-            "note": "Main checking account",
-            "balance": -6942931520,
-            "cleared_balance": 0,
-            "uncleared_balance": 0,
-            "transfer_payee_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "note": "Main checking account in the bank",
+            "balance": 312000,
+            "cleared_balance": 315000,
+            "uncleared_balance": 3000,
+            "transfer_payee_id": "payee-1432",
             "direct_import_linked": true,
             "direct_import_in_error": false,
             "last_reconciled_at": "2024-05-18T09:54:28.054Z",
@@ -56,11 +56,11 @@
         ]
       },
       {
-        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa7",
+        "id": "budg-id-bus33",
         "name": "Business Budget",
-        "last_modified_on": "2023-05-11T09:54:28.054Z",
-        "first_month": "2023-02-01",
-        "last_month": "2023-05-31",
+        "last_modified_on": "2024-05-18T09:54:28.054Z",
+        "first_month": "2024-05-01",
+        "last_month": "2024-05-31",
         "date_format": {
           "format": "yyyy-MM-dd"
         },
@@ -76,16 +76,16 @@
         },
         "accounts": [
           {
-            "id": "3fa85f64-5717-4562-b3fc-2c963f66afa7",
+            "id": "bus-acc-id4",
             "name": "Business Account",
             "type": "checking",
             "on_budget": true,
             "closed": false,
             "note": "Main business account",
-            "balance": 1000000,
-            "cleared_balance": 1000000,
-            "uncleared_balance": 0,
-            "transfer_payee_id": "3fa85f64-5717-4562-b3fc-2c963f66afa7",
+            "balance": 312000,
+            "cleared_balance": 315000,
+            "uncleared_balance": 3000,
+            "transfer_payee_id": "payee-1432",
             "direct_import_linked": true,
             "direct_import_in_error": false,
             "last_reconciled_at": "2024-05-18T09:54:28.054Z",
@@ -111,7 +111,7 @@
       }
     ],
     "default_budget": {
-      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "id": "default-budg1",
       "name": "Default Budget",
       "last_modified_on": "2024-05-18T09:54:28.054Z",
       "first_month": "2024-05-01",
@@ -131,7 +131,7 @@
       },
       "accounts": [
         {
-          "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "id": "def-acc19",
           "name": "Savings Account",
           "type": "savings",
           "on_budget": true,
@@ -140,7 +140,7 @@
           "balance": 500000,
           "cleared_balance": 500000,
           "uncleared_balance": 0,
-          "transfer_payee_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "transfer_payee_id": "payee-1432",
           "direct_import_linked": true,
           "direct_import_in_error": false,
           "last_reconciled_at": "2024-05-18T09:54:28.054Z",

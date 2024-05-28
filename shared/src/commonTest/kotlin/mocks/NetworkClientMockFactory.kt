@@ -1,3 +1,6 @@
+package mocks
+
+import UserAuthentication
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
@@ -10,6 +13,8 @@ import io.ktor.serialization.kotlinx.json.json
 import io.ktor.utils.io.ByteReadChannel
 import kotlinx.serialization.json.Json
 import infrastructure.networking.NetworkClient
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.json.JsonNamingStrategy
 
 internal class NetworkClientMockFactory {
     fun makeMockedNetworkClient(
@@ -27,6 +32,7 @@ internal class NetworkClientMockFactory {
         )
     }
 
+    @OptIn(ExperimentalSerializationApi::class)
     private fun makeMockHttpClient(
         accessToken: String,
         mockedResponseFileName: String,
@@ -34,7 +40,6 @@ internal class NetworkClientMockFactory {
     ): HttpClient {
         val mockEngine = MockEngine { request ->
             val authHeader = request.headers[HttpHeaders.Authorization]
-            println("HEADER: $authHeader")
 
             when (request.url.encodedPath) {
                 "/v1/$endpoint" -> {
@@ -63,6 +68,8 @@ internal class NetworkClientMockFactory {
             install(ContentNegotiation) {
                 json(Json {
                     ignoreUnknownKeys = true
+                    namingStrategy = JsonNamingStrategy.SnakeCase
+                    explicitNulls = false
                 })
             }
         }
