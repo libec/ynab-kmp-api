@@ -4,17 +4,17 @@ import Shared
 final class IntegrationTests: IntegrationTestCase {
 
     func test_itCallsTheApiWithInjectedTokens() async throws {
-        let repository = ynabSession.getBudgetsRepository()
-        try await repository.fetchAllBudgets()
+        let budgetRepository = ynabSession.getBudgetsRepository()
+        let accountsRepository = ynabSession.getAccountsRepository()
+
+        try await budgetRepository.fetchAllBudgets()
         print("All budgets:")
-        for budget in repository.budgets.value {
+        for budget in budgetRepository.budgets.value {
             budget.prettyPrint()
         }
 
-        for budget in repository.budgets.value {
-            let detail = try await repository.fetchBudgetWithDetail(budgetId: budget.id)
-            print(detail.budgetDetail?.accounts)
-            print(detail.budgetDetail?.transactions)
+        for account in accountsRepository.accounts.value where !account.closed {
+            account.prettyPrint()
         }
     }
 }
@@ -22,10 +22,6 @@ final class IntegrationTests: IntegrationTestCase {
 extension Budget {
     func prettyPrint() {
         print("Budget: \(name) | ID: \(id) ")
-        for account in (budgetDetail?.accounts ?? []) where !account.closed {
-            account.prettyPrint()
-        }
-        print("\n")
     }
 }
 

@@ -1,3 +1,4 @@
+import features.account.AccountsRepository
 import features.budget.BudgetsRepository
 import org.koin.core.scope.Scope
 import scopes.Scopes
@@ -12,7 +13,11 @@ class YnabSession(
     }
 
     fun getBudgetsRepository(): BudgetsRepository {
-        return loginScope?.get() ?: throw IllegalStateException("User is not logged in")
+        return loginScope.get()
+    }
+
+    fun getAccountsRepository(): AccountsRepository {
+        return loginScope.get()
     }
 
     fun logout() {

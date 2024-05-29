@@ -16,7 +16,7 @@ internal class BudgetsRepositoryImpl(
     private val resource: BudgetsResource
 ) : BudgetsRepository {
 
-    private val mutableBudgets = MutableStateFlow(listOf<Budget>())
+    private val mutableBudgets = MutableStateFlow(emptyList<Budget>())
     private val mutableSelectedBudgets = MutableStateFlow<Budget?>(null)
 
     override val budgets: StateFlow<List<Budget>>
@@ -40,6 +40,7 @@ internal class BudgetsRepositoryImpl(
         } else {
             budgets[index] = budget
         }
+        mutableBudgets.value = budgets
         return budget
     }
 }

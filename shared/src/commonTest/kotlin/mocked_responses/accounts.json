@@ -1,0 +1,71 @@
+{
+  "data": {
+    "accounts": [
+      {
+        "id": "acc-id-14llcd",
+        "name": "Checking Account",
+        "type": "checking-bank",
+        "on_budget": true,
+        "closed": false,
+        "note": "Main checking account in the bank",
+        "balance": 312000,
+        "cleared_balance": 315000,
+        "uncleared_balance": 3000,
+        "transfer_payee_id": "payee-1432",
+        "direct_import_linked": true,
+        "direct_import_in_error": false,
+        "last_reconciled_at": "2024-05-18T09:54:28.054Z",
+        "debt_original_balance": null,
+        "debt_interest_rates": {
+          "additionalProp1": 0,
+          "additionalProp2": 0,
+          "additionalProp3": 0
+        },
+        "debt_minimum_payments": {
+          "additionalProp1": 0,
+          "additionalProp2": 0,
+          "additionalProp3": 0
+        },
+        "debt_escrow_amounts": {
+          "additionalProp1": 0,
+          "additionalProp2": 0,
+          "additionalProp3": 0
+        },
+        "deleted": false
+      },
+      {
+        "id": "bus-acc-id434z",
+        "name": "Business Account",
+        "type": "business",
+        "on_budget": false,
+        "closed": true,
+        "note": "Main business account",
+        "balance": 1250000,
+        "cleared_balance": 1200000,
+        "uncleared_balance": 1350000,
+        "transfer_payee_id": "transfer-business-19",
+        "direct_import_linked": true,
+        "direct_import_in_error": false,
+        "last_reconciled_at": "2024-05-18T09:54:28.054Z",
+        "debt_original_balance": 19500,
+        "debt_interest_rates": {
+          "additionalProp1": 0,
+          "additionalProp2": 0,
+          "additionalProp3": 0
+        },
+        "debt_minimum_payments": {
+          "additionalProp1": 0,
+          "additionalProp2": 0,
+          "additionalProp3": 0
+        },
+        "debt_escrow_amounts": {
+          "additionalProp1": 0,
+          "additionalProp2": 0,
+          "additionalProp3": 0
+        },
+        "deleted": false
+      }
+    ],
+    "server_knowledge": 0
+  }
+}

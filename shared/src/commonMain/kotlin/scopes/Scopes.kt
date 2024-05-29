@@ -5,6 +5,10 @@ import features.budget.BudgetsRepositoryImpl
 import features.budget.BudgetsResource
 import features.budget.BudgetsRestResource
 import UserAuthentication
+import features.account.AccountsRepository
+import features.account.AccountsRepositoryImpl
+import features.account.AccountsResource
+import features.account.AccountsRestResource
 import infrastructure.networking.NetworkClient
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -26,6 +30,10 @@ internal object Scopes : KoinComponent {
         scope<LoginScope> {
             scoped<BudgetsRepository> { BudgetsRepositoryImpl(get()) }
             factory<BudgetsResource> { BudgetsRestResource(get()) }
+
+            scoped<AccountsRepository> { AccountsRepositoryImpl(get()) }
+            factory<AccountsResource> { AccountsRestResource(get()) }
+
             factory<NetworkClient> { NetworkClient(get(), get()) }
             factory<HttpClient> {
                 HttpClient {
