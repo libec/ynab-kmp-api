@@ -12,7 +12,7 @@ internal class AccountsRestResource(
 ) : AccountsResource {
 
     override suspend fun getAccounts(budgetId: String): List<Account> {
-        val response: features.account.ApiResponse.AccountsResponse =
+        val response: ApiResponse.AccountsResponse =
             networkClient.get("/budgets/$budgetId/accounts")
         return response.data.accounts
     }

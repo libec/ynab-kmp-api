@@ -26,21 +26,17 @@ internal class BudgetsRepositoryImpl(
         get() = mutableSelectedBudgets.asStateFlow()
 
     override suspend fun fetchAllBudgets() {
-        val response = resource.getAllBudgets()
-        mutableBudgets.value = response.budgets
-        mutableSelectedBudgets.value = response.defaultBudget
+        resource.getAllBudgets().let { response ->
+            mutableBudgets.value = response.budgets
+            mutableSelectedBudgets.value = response.defaultBudget
+        }
     }
 
     override suspend fun fetchBudgetWithDetail(budgetId: String): Budget {
         val budget = resource.getBudget(budgetId)
         val budgets = mutableBudgets.value.toMutableList()
         val index = budgets.indexOfFirst { it.id == budgetId }
-        if (index == -1) {
-            budgets.add(budget)
-        } else {
-            budgets[index] = budget
-        }
-        mutableBudgets.value = budgets
+        mutableBudgets.value = if (index == -1) budgets + budget else budgets.apply { this[index] = budget }
         return budget
     }
 }

@@ -9,3 +9,12 @@ data class Payee(
     val transferAccountId: String?,
     val deleted: Boolean
 )
+
+@Serializable
+data class PayeeLocation(
+    val id: String,
+    val payeeId: String,
+    val latitude: String,
+    val longitude: String,
+    val deleted: Boolean
+)

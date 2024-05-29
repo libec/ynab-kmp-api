@@ -20,7 +20,8 @@ internal class PayeesRepositoryImpl(
         get() = mutablePayees.asStateFlow()
 
     override suspend fun fetchPayees(budgetId: String) {
-        val payees = resource.getPayees(budgetId)
-        mutablePayees.value = payees
+        resource.getPayees(budgetId).let { payees ->
+            mutablePayees.value = payees
+        }
     }
 }

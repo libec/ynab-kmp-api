@@ -1,6 +1,5 @@
 package features.payee
 
-import features.account.Account
 import infrastructure.networking.NetworkClient
 import kotlinx.serialization.Serializable
 

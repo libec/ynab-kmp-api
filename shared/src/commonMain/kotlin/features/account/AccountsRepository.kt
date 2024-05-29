@@ -20,7 +20,8 @@ internal class AccountsRepositoryImpl(
         get() = mutableAccounts.asStateFlow()
 
     override suspend fun fetchAccounts(budgetId: String) {
-        val accounts = resource.getAccounts(budgetId)
-        mutableAccounts.value = accounts
+        resource.getAccounts(budgetId).let { accounts ->
+            mutableAccounts.value = accounts
+        }
     }
 }

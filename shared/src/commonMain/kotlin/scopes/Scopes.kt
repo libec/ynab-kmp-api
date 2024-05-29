@@ -9,6 +9,10 @@ import features.budget.BudgetsRepository
 import features.budget.BudgetsRepositoryImpl
 import features.budget.BudgetsResource
 import features.budget.BudgetsRestResource
+import features.category.CategoriesRepository
+import features.category.CategoriesRepositoryImpl
+import features.category.CategoriesResource
+import features.category.CategoriesRestResource
 import features.payee.PayeesRepository
 import features.payee.PayeesRepositoryImpl
 import features.payee.PayeesResource
@@ -38,6 +42,8 @@ internal object Scopes : KoinComponent {
 
             scoped<PayeesRepository> { PayeesRepositoryImpl(get()) }
             factory<PayeesResource> { PayeesRestResource(get()) }
+            scoped<CategoriesRepository> { CategoriesRepositoryImpl(get()) }
+            factory<CategoriesResource> { CategoriesRestResource(get()) }
 
             factory<NetworkClient> { NetworkClient(get(), get()) }
             factory<HttpClient> {
