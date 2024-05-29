@@ -10,6 +10,7 @@ import features.transaction.ScheduledTransaction
 import features.transaction.Subtransaction
 import features.transaction.Transaction
 import fixtures.fixture
+import fixtures.summaryFixture
 import kotlinx.coroutines.runBlocking
 import mocks.NetworkClientMockFactory
 import kotlin.test.Test
@@ -88,7 +89,7 @@ class BudgetsTests {
                 categoryGroups = listOf(CategoryGroup.fixture()),
                 categories = listOf(Category.fixture()),
                 months = listOf(Month.fixture()),
-                transactions = listOf(Transaction.fixture()),
+                transactions = listOf(Transaction.summaryFixture()),
                 subtransactions = listOf(Subtransaction.fixture()),
                 scheduledTransactions = listOf(ScheduledTransaction.fixture()),
                 scheduledSubtransactions = listOf(ScheduledSubtransaction.fixture())
@@ -130,7 +131,7 @@ class BudgetsTests {
             categoryGroups = listOf(CategoryGroup.fixture()),
             categories = listOf(Category.fixture()),
             months = listOf(Month.fixture()),
-            transactions = listOf(Transaction.fixture()),
+            transactions = listOf(Transaction.summaryFixture()),
             subtransactions = listOf(Subtransaction.fixture()),
             scheduledTransactions = listOf(ScheduledTransaction.fixture()),
             scheduledSubtransactions = listOf(ScheduledSubtransaction.fixture())

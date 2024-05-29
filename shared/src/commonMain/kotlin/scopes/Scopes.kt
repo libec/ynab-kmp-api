@@ -17,6 +17,10 @@ import features.payee.PayeesRepository
 import features.payee.PayeesRepositoryImpl
 import features.payee.PayeesResource
 import features.payee.PayeesRestResource
+import features.transaction.TransactionsRepository
+import features.transaction.TransactionsRepositoryImpl
+import features.transaction.TransactionsResource
+import features.transaction.TransactionsRestResource
 import infrastructure.networking.NetworkClient
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -36,14 +40,14 @@ internal object Scopes : KoinComponent {
         scope<LoginScope> {
             scoped<BudgetsRepository> { BudgetsRepositoryImpl(get()) }
             factory<BudgetsResource> { BudgetsRestResource(get()) }
-
             scoped<AccountsRepository> { AccountsRepositoryImpl(get()) }
             factory<AccountsResource> { AccountsRestResource(get()) }
-
             scoped<PayeesRepository> { PayeesRepositoryImpl(get()) }
             factory<PayeesResource> { PayeesRestResource(get()) }
             scoped<CategoriesRepository> { CategoriesRepositoryImpl(get()) }
             factory<CategoriesResource> { CategoriesRestResource(get()) }
+            scoped<TransactionsRepository> { TransactionsRepositoryImpl(get()) }
+            factory<TransactionsResource> { TransactionsRestResource(get()) }
 
             factory<NetworkClient> { NetworkClient(get(), get()) }
             factory<HttpClient> {

@@ -15,6 +15,9 @@ data class Transaction(
     val accountId: String,
     val payeeId: String?,
     val categoryId: String?,
+    val accountName: String?,
+    val payeeName: String?,
+    val categoryName: String?,
     val transferAccountId: String?,
     val transferTransactionId: String?,
     val matchedTransactionId: String?,
@@ -22,5 +25,6 @@ data class Transaction(
     val importPayeeName: String?,
     val importPayeeNameOriginal: String?,
     val debtTransactionType: String?,
-    val deleted: Boolean
+    val deleted: Boolean,
+    val subtransactions: List<Subtransaction> = emptyList()
 )

@@ -2,6 +2,7 @@ import features.account.AccountsRepository
 import features.budget.BudgetsRepository
 import features.category.CategoriesRepository
 import features.payee.PayeesRepository
+import features.transaction.TransactionsRepository
 import org.koin.core.scope.Scope
 import scopes.Scopes
 
@@ -27,6 +28,10 @@ class YnabSession(
     }
 
     fun getCategoriesRepository(): CategoriesRepository {
+        return loginScope.get()
+    }
+
+    fun getTransactionsRepository(): TransactionsRepository {
         return loginScope.get()
     }
 
