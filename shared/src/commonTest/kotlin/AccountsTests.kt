@@ -6,7 +6,7 @@ import mocks.NetworkClientMockFactory
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class AccountTests {
+class AccountsTests {
 
     @Test
     fun `it downloads and stores accounts`() = runBlocking {

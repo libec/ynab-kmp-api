@@ -15,7 +15,8 @@ import mocks.NetworkClientMockFactory
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class BudgetTests {
+class BudgetsTests {
+
     @Test
     fun `it downloads all budgets with injected access token`() = runBlocking {
         val mockedNetworkClient = NetworkClientMockFactory().makeMockedNetworkClient(

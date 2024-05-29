@@ -1,0 +1,25 @@
+{
+  "data": {
+    "payees": [
+      {
+        "id": "payee-id-139cvw",
+        "name": "Drug store",
+        "transfer_account_id": "drug-tranfid1",
+        "deleted": false
+      },
+      {
+        "id": "payee-id-2102f",
+        "name": "Spotify",
+        "transfer_account_id": "drug-tranfid1",
+        "deleted": true
+      },
+      {
+        "id": "ynaid-yesyoudo",
+        "name": "YNAB",
+        "transfer_account_id": "drug-tranfid1",
+        "deleted": false
+      }
+    ],
+    "server_knowledge": 0
+  }
+}

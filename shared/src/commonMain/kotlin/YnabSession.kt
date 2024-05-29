@@ -1,5 +1,6 @@
 import features.account.AccountsRepository
 import features.budget.BudgetsRepository
+import features.payee.PayeesRepository
 import org.koin.core.scope.Scope
 import scopes.Scopes
 
@@ -17,6 +18,10 @@ class YnabSession(
     }
 
     fun getAccountsRepository(): AccountsRepository {
+        return loginScope.get()
+    }
+
+    fun getPayeesRepository(): PayeesRepository {
         return loginScope.get()
     }
 
