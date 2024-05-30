@@ -53,7 +53,6 @@ internal class HttpClientMockFactory {
         val json: String =
             File("src/commonTest/kotlin/mocked_responses/${path}").readText()
         return json
-
     }
 
     private fun MockRequestHandleScope.makeErrorResponse(statusCode: HttpStatusCode) =

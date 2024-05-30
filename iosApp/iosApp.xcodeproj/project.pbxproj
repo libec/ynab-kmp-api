@@ -11,9 +11,7 @@
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		2C18CFEC2BEBE74000F89B97 /* LifecycleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C18CFEB2BEBE74000F89B97 /* LifecycleTests.swift */; };
-		2C34EBC72BFCEB7500277768 /* IntegrationTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C34EBC62BFCEB7500277768 /* IntegrationTestCase.swift */; };
-		2CBD9D592BEA9664008D1941 /* IntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBD9D582BEA9664008D1941 /* IntegrationTests.swift */; };
-		2CEDE6372BFA6A1800368DC9 /* token.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2CEDE6362BFA6A1800368DC9 /* token.txt */; };
+		2CBD9D592BEA9664008D1941 /* EndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBD9D582BEA9664008D1941 /* EndToEndTests.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,10 +30,8 @@
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		2C18CFEB2BEBE74000F89B97 /* LifecycleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifecycleTests.swift; sourceTree = "<group>"; };
-		2C34EBC62BFCEB7500277768 /* IntegrationTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationTestCase.swift; sourceTree = "<group>"; };
 		2CBD9D562BEA9664008D1941 /* IntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2CBD9D582BEA9664008D1941 /* IntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationTests.swift; sourceTree = "<group>"; };
-		2CEDE6362BFA6A1800368DC9 /* token.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = token.txt; sourceTree = "<group>"; };
+		2CBD9D582BEA9664008D1941 /* EndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndToEndTests.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = iosApp.app; path = "ynab-kmm-api.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,9 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				2C18CFEB2BEBE74000F89B97 /* LifecycleTests.swift */,
-				2CBD9D582BEA9664008D1941 /* IntegrationTests.swift */,
-				2C34EBC62BFCEB7500277768 /* IntegrationTestCase.swift */,
-				2CEDE6362BFA6A1800368DC9 /* token.txt */,
+				2CBD9D582BEA9664008D1941 /* EndToEndTests.swift */,
 			);
 			path = IntegrationTests;
 			sourceTree = "<group>";
@@ -213,7 +207,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CEDE6372BFA6A1800368DC9 /* token.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,8 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CBD9D592BEA9664008D1941 /* IntegrationTests.swift in Sources */,
-				2C34EBC72BFCEB7500277768 /* IntegrationTestCase.swift in Sources */,
+				2CBD9D592BEA9664008D1941 /* EndToEndTests.swift in Sources */,
 				2C18CFEC2BEBE74000F89B97 /* LifecycleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
