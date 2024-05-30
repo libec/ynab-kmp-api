@@ -19,6 +19,7 @@ internal class NetworkClient(
 
     suspend inline fun <reified T> get(endpoint: String, query: List<Pair<String, String>> = emptyList()): T {
         return httpClient.get("$baseUrl$endpoint") {
+            // TODO: - Try to use Ktor plugin for Authentication
             header(HttpHeaders.Authorization, "Bearer ${userAuthentication.token}")
             query.forEach { (key, value) -> parameter(key, value) }
         }.body()

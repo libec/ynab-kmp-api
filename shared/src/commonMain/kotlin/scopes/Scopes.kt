@@ -22,11 +22,10 @@ import features.transaction.TransactionsRepositoryImpl
 import features.transaction.TransactionsResource
 import features.transaction.TransactionsRestResource
 import infrastructure.networking.NetworkClient
+import infrastructure.networking.makeJsonNegotiation
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonNamingStrategy
 import org.koin.core.component.KoinComponent
 import org.koin.core.context.startKoin
 import org.koin.core.scope.Scope
@@ -51,13 +50,11 @@ internal object Scopes : KoinComponent {
 
             factory<NetworkClient> { NetworkClient(get(), get()) }
             factory<HttpClient> {
+                // TODO: - Move this to NetworkClient init so that makeJsonNegotiation is not exposed
+                // It seems to not be possible to install ContentNegotiation plugin after HttpClient has been created
                 HttpClient {
                     install(ContentNegotiation) {
-                        json(Json {
-                            ignoreUnknownKeys = true
-                            namingStrategy = JsonNamingStrategy.SnakeCase
-                            explicitNulls = false
-                        })
+                        json(makeJsonNegotiation())
                     }
                 }
             }

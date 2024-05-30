@@ -12,19 +12,15 @@ import features.transaction.Transaction
 import fixtures.fixture
 import fixtures.summaryFixture
 import kotlinx.coroutines.runBlocking
-import mocks.NetworkClientMockFactory
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class BudgetsTests {
+class BudgetsTests: MockedResponseTests() {
 
     @Test
-    fun `it downloads all budgets with injected access token`() = runBlocking {
-        val mockedNetworkClient = NetworkClientMockFactory().makeMockedNetworkClient(
-            listOf(Pair("budgets", "budgets.json"))
-        )
-        val ynabSession = YnabSession(userAuthentication = UserAuthentication("ae2e03aaew3"))
-        ynabSession.loginScope.declare(mockedNetworkClient)
+    fun `it downloads default and all budgets`() = runBlocking {
+        val mockedResponses = listOf(Pair("budgets", "budgets.json"))
+        val ynabSession = makeYnabSession(mockedResponses)
         val budgetRepository = ynabSession.getBudgetsRepository()
 
         budgetRepository.fetchAllBudgets()
@@ -74,11 +70,8 @@ class BudgetsTests {
 
     @Test
     fun `it fetches a budget with detail`() = runBlocking {
-        val mockedNetworkClient = NetworkClientMockFactory().makeMockedNetworkClient(
-            listOf(Pair("budgets/id3", "budget_detail.json"))
-        )
-        val ynabSession = YnabSession(userAuthentication = UserAuthentication("ae2e03aaew3"))
-        ynabSession.loginScope.declare(mockedNetworkClient)
+        val mockedResponses = listOf(Pair("budgets/id3", "budget_detail.json"))
+        val ynabSession = makeYnabSession(mockedResponses)
         val budgetRepository = ynabSession.getBudgetsRepository()
 
         val expectedBudget = Budget.fixture(
@@ -103,12 +96,8 @@ class BudgetsTests {
 
     @Test
     fun `fetching budget with a detail overwrites the existing budget with the same id`() = runBlocking {
-        val budgetId = "budg-id-dbaw4rj"
-        val mockedNetworkClient = NetworkClientMockFactory().makeMockedNetworkClient(
-            listOf(Pair("budgets", "budgets.json"), Pair("budgets/$budgetId", "budget_detail.json"))
-        )
-        val ynabSession = YnabSession(userAuthentication = UserAuthentication("ae2e03aaew3"))
-        ynabSession.loginScope.declare(mockedNetworkClient)
+        val mockedResponses = listOf(Pair("budgets", "budgets.json"), Pair("budgets/$budgetId", "budget_detail.json"))
+        val ynabSession = makeYnabSession(mockedResponses)
         val budgetRepository = ynabSession.getBudgetsRepository()
         budgetRepository.fetchAllBudgets()
 

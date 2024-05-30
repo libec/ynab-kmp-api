@@ -1,22 +1,16 @@
-import features.budget.Budget
 import features.category.Category
 import features.category.CategoryGroup
 import fixtures.fixture
 import kotlinx.coroutines.runBlocking
-import mocks.NetworkClientMockFactory
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class CategoriesTests {
+class CategoriesTests: MockedResponseTests() {
 
     @Test
     fun `it downloads and stores categories`() = runBlocking {
-        val budgetId = Budget.fixture().id
-        val mockedNetworkClient = NetworkClientMockFactory().makeMockedNetworkClient(
-            listOf(Pair("budgets/$budgetId/categories", "categories.json"))
-        )
-        val ynabSession = YnabSession(userAuthentication = UserAuthentication("ae2e03aaew3"))
-        ynabSession.loginScope.declare(mockedNetworkClient)
+        val mockedResponses = listOf(Pair("budgets/$budgetId/categories", "categories.json"))
+        val ynabSession = makeYnabSession(mockedResponses)
         val categoriesRepository = ynabSession.getCategoriesRepository()
 
         categoriesRepository.fetchCategories(budgetId)

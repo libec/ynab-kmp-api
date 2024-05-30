@@ -1,21 +1,15 @@
-import features.budget.Budget
 import features.transaction.Transaction
 import fixtures.fixture
 import kotlinx.coroutines.runBlocking
-import mocks.NetworkClientMockFactory
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class TransactionsTests {
+class TransactionsTests: MockedResponseTests() {
 
     @Test
     fun `it downloads and stores transactions`() = runBlocking {
-        val budgetId = Budget.fixture().id
-        val mockedNetworkClient = NetworkClientMockFactory().makeMockedNetworkClient(
-            listOf(Pair("budgets/$budgetId/transactions", "transactions.json"))
-        )
-        val ynabSession = YnabSession(userAuthentication = UserAuthentication("ae2e03aaew3"))
-        ynabSession.loginScope.declare(mockedNetworkClient)
+        val mockedResponses = listOf(Pair("budgets/$budgetId/transactions", "transactions.json"))
+        val ynabSession = makeYnabSession(mockedResponses)
         val transactionsRepository = ynabSession.getTransactionsRepository()
 
         transactionsRepository.fetchTransactions(budgetId)

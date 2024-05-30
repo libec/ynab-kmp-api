@@ -1,8 +1,11 @@
+import kotlinx.coroutines.runBlocking
+import mocks.HttpClientMockFactory
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 
 class YnabSessionTests {
+
     @Test
     fun `each ynab session starts a scope with its own scoped instances`() {
         val petersToken = "peter_token"
@@ -28,5 +31,21 @@ class YnabSessionTests {
         assertEquals(repository1, repository2)
         assertEquals(repository2, repository3)
         assertEquals(repository1, repository3)
+    }
+
+    @Test
+    fun `network client uses injected access token`() = runBlocking {
+        val petersToken = "peters-token"
+        val mockedHttpClient = HttpClientMockFactory().makeMockedHttpClient(
+            accessToken = petersToken,
+            mockedResponse = "budgets.json"
+        )
+        val ynabSession = YnabSession(UserAuthentication(petersToken))
+        ynabSession.loginScope.declare(mockedHttpClient)
+
+        val budgetsRepository = ynabSession.getBudgetsRepository()
+        budgetsRepository.fetchAllBudgets()
+
+        assertEquals(budgetsRepository.budgets.value.size, 2)
     }
 }
