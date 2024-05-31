@@ -11,7 +11,10 @@ class EndToEndTests {
         // Don't commit your access token to git
         val accessToken: String? = null
 
-        requireNotNull(accessToken) { "You need to enter your access token first" }
+        if (accessToken == null) {
+            println("You need to provide your access token to run this test")
+            return@runBlocking
+        }
 
         // 1 - Inject your access token to start a session
         val ynabSession = YnabSession(UserAuthentication(accessToken))
@@ -61,7 +64,7 @@ class EndToEndTests {
         transactionsRepository.fetchTransactions(budgetId = budget.id)
         println("🔁🔁 All your transactions")
         for (transaction in transactionsRepository.transactions.value) {
-            println("\t${transaction.payeeName ?: ""}: ${transaction.amount}")
+            println("\t${transaction.payeeName}: ${transaction.amount}")
         }
 
         println("That's it. Pretty cool, but check out those same end to end tests on iOS")
