@@ -1,17 +1,86 @@
-This is a Kotlin Multiplatform project targeting Android, iOS.
+[YNAB](https://www.ynab.com/) (You Need A Budget) is a great piece of budgeting software with a [public API](https://api.ynab.com/). This is a multiplatform Kotlin library for that API that compiles for JVM for Android and LLVM for iOS.
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
+The feature set is not 1:1 to the public API, but it's a good starting point built on solid foundations.
 
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+## Motivation
+I'm an iOS developer interested in sharing code across platforms without compromising the native experience. I knew zero Kotlin before this, but learning by doing is my jam, and doing something useful like sharing data access code is a great starting point that is just a step away from sharing business logic to ensure consistency across the whole product.
 
-* `/shared` is for the code that will be shared between all targets in the project.
-  The most important subfolder is `commonMain`. If preferred, you can add code to the platform-specific folders here too.
+## Usage
 
+Check `EndToEndTests` in Kotlin and in Swift for a executable example of how to use the library.
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+Replace null with your token (also, don't commit your access token to git):
+
+```
+val accessToken: String? = null
+```
+
+Inject your access token to start a session:
+```
+val ynabSession = YnabSession(UserAuthentication(accessToken))
+```
+
+Session scoped repositories hold your data for the lifetime of the session:
+```
+val budgetRepository = ynabSession.getBudgetsRepository()
+val accountsRepository = ynabSession.getAccountsRepository()
+val payeesRepository = ynabSession.getPayeesRepository()
+val categoriesRepository = ynabSession.getCategoriesRepository()
+val transactionsRepository = ynabSession.getTransactionsRepository()
+```
+
+Fetch budgets:
+```
+budgetRepository.fetchAllBudgets()
+```
+
+Updates are propagated via StateFlow:
+```
+for (budget in budgetRepository.budgets.value) {
+    println("\t${budget.name}: ${budget.id}")
+}
+```
+
+Select the budget you're interested in:
+```
+val budget = budgetRepository.budgets.value.random()
+```
+
+Load accounts:
+```
+accountsRepository.fetchAccounts(budgetId = budget.id)
+for (account in accountsRepository.accounts.value.filter { !it.closed }) {
+    println("\t${account.name}: ${account.balance}")
+}
+```
+
+Load payees:
+```
+payeesRepository.fetchPayees(budgetId = budget.id)
+for (payee in payeesRepository.payees.value) {
+    println("\t${payee.name}")
+}
+```
+
+Load categories:
+```
+categoriesRepository.fetchCategories(budgetId = budget.id)
+for (category in categoriesRepository.categories.value) {
+    println("\t${category.name}")
+}
+```
+
+Load transactions:
+```
+transactionsRepository.fetchTransactions(budgetId = budget.id)
+for (transaction in transactionsRepository.transactions.value) {
+    println("\t${transaction.payeeName ?: ""}: ${transaction.amount}")
+}
+```
+
+## Why bother with Repositories and not just expose Resources
+To [quote myself](https://mobileit.cz/Blog/Pages/swift-ui-and-architecture-state.aspx):
+
+> A repository is a design pattern that abstracts data access logic from business access logic by exposing the collection-like interface to access business entities. The actual implementation of the interface might communicate with the database,  REST API, and what your project requires...
+
+A repository is a great place for possible implementation of caching and compilation of delta requests as described in the [public API](https://api.ynab.com/).
