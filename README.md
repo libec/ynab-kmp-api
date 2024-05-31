@@ -11,17 +11,17 @@ Check `EndToEndTests` in Kotlin and in Swift for a executable example of how to 
 
 Replace null with your token (also, don't commit your access token to git):
 
-```
+```kotlin
 val accessToken: String? = null
 ```
 
 Inject your access token to start a session:
-```
+```kotlin
 val ynabSession = YnabSession(UserAuthentication(accessToken))
 ```
 
 Session scoped repositories hold your data for the lifetime of the session:
-```
+```kotlin
 val budgetRepository = ynabSession.getBudgetsRepository()
 val accountsRepository = ynabSession.getAccountsRepository()
 val payeesRepository = ynabSession.getPayeesRepository()
@@ -29,52 +29,22 @@ val categoriesRepository = ynabSession.getCategoriesRepository()
 val transactionsRepository = ynabSession.getTransactionsRepository()
 ```
 
-Fetch budgets:
-```
+Fetch your data:
+```kotlin
 budgetRepository.fetchAllBudgets()
-```
-
-Updates are propagated via StateFlow:
-```
-for (budget in budgetRepository.budgets.value) {
-    println("\t${budget.name}: ${budget.id}")
-}
-```
-
-Select the budget you're interested in:
-```
-val budget = budgetRepository.budgets.value.random()
-```
-
-Load accounts:
-```
 accountsRepository.fetchAccounts(budgetId = budget.id)
-for (account in accountsRepository.accounts.value.filter { !it.closed }) {
-    println("\t${account.name}: ${account.balance}")
-}
-```
-
-Load payees:
-```
 payeesRepository.fetchPayees(budgetId = budget.id)
-for (payee in payeesRepository.payees.value) {
-    println("\t${payee.name}")
-}
-```
-
-Load categories:
-```
 categoriesRepository.fetchCategories(budgetId = budget.id)
-for (category in categoriesRepository.categories.value) {
-    println("\t${category.name}")
-}
 ```
 
-Load transactions:
-```
-transactionsRepository.fetchTransactions(budgetId = budget.id)
-for (transaction in transactionsRepository.transactions.value) {
-    println("\t${transaction.payeeName ?: ""}: ${transaction.amount}")
+Subscribe to updates:
+```kotlin
+budgetRepository.budgets.map { budgets ->
+    // Do your domain or presentation magic here
+}
+
+categoriesRepository.categories.map { categories ->
+    // Do your domain or presentation magic here
 }
 ```
 

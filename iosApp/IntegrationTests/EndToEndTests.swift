@@ -8,7 +8,7 @@ final class EndToEndTests: XCTestCase {
     func test_itCallsTheApiWithInjectedTokens() async throws {
         // 0 - Replace nil with your token
         // Don't commit your access token to git
-        var accessToken: String? = nil
+        let accessToken: String? = nil
 
         try XCTSkipIf(accessToken == nil, "You need to enter your access token first")
 
