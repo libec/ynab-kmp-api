@@ -50,8 +50,8 @@ internal object Scopes : KoinComponent {
 
             factory<NetworkClient> { NetworkClient(get(), get()) }
             factory<HttpClient> {
-                // TODO: - Move this to NetworkClient init so that makeJsonNegotiation is not exposed
-                // It seems to not be possible to install ContentNegotiation plugin after HttpClient has been created
+                // TODO: - Moving json plugin installation to NetworkClient.kt doesn't
+                // seem to take effect on iOS as it fails on parsing. Investigate why.
                 HttpClient {
                     install(ContentNegotiation) {
                         json(makeJsonNegotiation())
