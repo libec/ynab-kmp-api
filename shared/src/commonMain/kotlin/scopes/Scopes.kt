@@ -33,9 +33,9 @@ import org.koin.dsl.module
 
 internal object Scopes : KoinComponent {
 
-    object LoginScope {}
+    object LoginScope
 
-    val ynabModules = module {
+    private val ynabModules = module {
         scope<LoginScope> {
             scoped<BudgetsRepository> { BudgetsRepositoryImpl(get()) }
             factory<BudgetsResource> { BudgetsRestResource(get()) }

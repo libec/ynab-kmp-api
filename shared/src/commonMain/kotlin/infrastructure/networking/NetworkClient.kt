@@ -1,14 +1,10 @@
 package infrastructure.networking
 
 import UserAuthentication
-import io.ktor.client.HttpClient
-import io.ktor.client.call.body
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.request.get
-import io.ktor.client.request.header
-import io.ktor.client.request.parameter
-import io.ktor.http.HttpHeaders
-import io.ktor.serialization.kotlinx.json.json
+import io.ktor.client.*
+import io.ktor.client.call.*
+import io.ktor.client.request.*
+import io.ktor.http.*
 
 internal class NetworkClient(
     private val httpClient: HttpClient,
@@ -26,14 +22,14 @@ internal class NetworkClient(
 //    }
 
     companion object {
-        const val baseUrl = "https://api.youneedabudget.com/v1"
+        const val BASE_URL = "https://api.youneedabudget.com/v1"
     }
 
     suspend inline fun <reified T> get(
         endpoint: String,
         query: List<Pair<String, String>> = emptyList()
     ): T {
-        return httpClient.get("$baseUrl$endpoint") {
+        return httpClient.get("$BASE_URL$endpoint") {
             // TODO: - Try to use Ktor plugin for Authentication
             header(HttpHeaders.Authorization, "Bearer ${userAuthentication.token}")
             query.forEach { (key, value) -> parameter(key, value) }

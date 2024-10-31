@@ -7,13 +7,9 @@ import org.koin.core.scope.Scope
 import scopes.Scopes
 
 class YnabSession(
-    private val userAuthentication: UserAuthentication,
+    userAuthentication: UserAuthentication,
 ) {
-    internal var loginScope: Scope
-
-    init {
-        loginScope = Scopes.newLoginScope(userAuthentication)
-    }
+    internal var loginScope: Scope = Scopes.newLoginScope(userAuthentication)
 
     fun getBudgetsRepository(): BudgetsRepository {
         return loginScope.get()
