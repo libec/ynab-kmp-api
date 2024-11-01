@@ -1,6 +1,6 @@
 package scopes
 
-import UserAuthentication
+import session.UserAuthentication
 import features.account.AccountsRepository
 import features.account.AccountsRepositoryImpl
 import features.account.AccountsResource

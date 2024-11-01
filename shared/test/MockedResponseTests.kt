@@ -1,6 +1,8 @@
 import features.budget.Budget
 import fixtures.fixture
 import mocks.HttpClientMockFactory
+import session.YnabSession
+import session.UserAuthentication
 
 open class MockedResponseTests {
     protected val budgetId = Budget.fixture().id

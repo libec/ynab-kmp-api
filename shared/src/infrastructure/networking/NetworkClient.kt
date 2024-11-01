@@ -1,6 +1,6 @@
 package infrastructure.networking
 
-import UserAuthentication
+import session.UserAuthentication
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
