@@ -1,4 +1,4 @@
-import Shared
+import shared
 import XCTest
 
 class ApiLifecycleTests: XCTestCase {

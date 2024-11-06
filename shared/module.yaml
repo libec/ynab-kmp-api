@@ -9,15 +9,15 @@ dependencies:
   - $libs.koin.core
   - $libs.kotlinx.coroutines.core
 
-test-dependencies:
+test-dependencies@android:
   - $libs.ktor.client.mock
   - $libs.kotlinx.coroutines.test
 
 dependencies@android:
-  - $libs.ktor.client.okhttp
+  - $libs.ktor.client.android
 
 dependencies@ios:
-  - $libs.ktor.client.darwin
+  - $libs.ktor.client.ios
 
 settings:
   kotlin:
@@ -28,3 +28,4 @@ settings:
   ios:
     framework:
       basename: shared
+

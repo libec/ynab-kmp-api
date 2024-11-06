@@ -51,7 +51,7 @@ internal class HttpClientMockFactory {
         // TODO: - File is imported from java.io and iOS test can't run because of it.
         // try to use expected method and use actual where iOS would use Bundle to load resources
         val json: String =
-            File("test/mocked_responses/${path}").readText()
+            File("test@android/mocked_responses/${path}").readText()
         return json
     }
 
