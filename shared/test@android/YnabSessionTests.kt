@@ -3,6 +3,8 @@ import mocks.HttpClientMockFactory
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
+import session.YnabSession
+import session.UserAuthentication
 
 class YnabSessionTests {
 

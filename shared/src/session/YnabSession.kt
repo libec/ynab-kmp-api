@@ -1,3 +1,5 @@
+package session
+
 import features.account.AccountsRepository
 import features.budget.BudgetsRepository
 import features.category.CategoriesRepository
@@ -9,6 +11,7 @@ import scopes.Scopes
 class YnabSession(
     userAuthentication: UserAuthentication,
 ) {
+
     internal var loginScope: Scope = Scopes.newLoginScope(userAuthentication)
 
     fun getBudgetsRepository(): BudgetsRepository {

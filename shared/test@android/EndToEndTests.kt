@@ -1,5 +1,7 @@
 import kotlinx.coroutines.runBlocking
 import kotlin.test.Test
+import session.YnabSession
+import session.UserAuthentication
 
 // Be a good scout and don't run those tests frequently or on CI as they call real backends
 // They are off by default as you need to provide your own access token
