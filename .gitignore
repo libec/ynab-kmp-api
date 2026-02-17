@@ -7,5 +7,6 @@ captures
 .externalNativeBuild
 .cxx
 local.properties
+.kotlin
 xcuserdata
 iosApp/IntegrationTests/token.txt

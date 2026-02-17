@@ -1,8 +1,8 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-    kotlin("plugin.serialization") version "1.9.22"
-    id("co.touchlab.skie") version "0.6.4"
+    alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.skie)
 }
 
 kotlin {
@@ -26,29 +26,30 @@ kotlin {
             baseName = "Shared"
             isStatic = true
         }
+        target.compilations.matching { it.name == "test" }.configureEach {
+            compileTaskProvider.configure { enabled = false }
+        }
     }
 
     sourceSets {
         appleMain.dependencies {
-            implementation("io.ktor:ktor-client-darwin:2.3.9")
+            implementation(libs.ktor.client.darwin)
         }
 
         commonMain.dependencies {
-            implementation("io.ktor:ktor-client-core:2.3.9")
-            implementation("io.ktor:ktor-client-content-negotiation:2.3.9")
-            implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.9")
-            implementation("io.insert-koin:koin-core:3.2.0")
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.koin.core)
         }
 
         androidMain.dependencies {
-            implementation("io.ktor:ktor-client-android:2.3.9")
+            implementation(libs.ktor.client.android)
         }
 
-        val commonTest by getting {
-            dependencies {
-                implementation(libs.kotlin.test)
-                implementation("io.ktor:ktor-client-mock:2.3.9")
-            }
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
+            implementation(libs.ktor.client.mock)
         }
     }
 }
